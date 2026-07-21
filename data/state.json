@@ -1,0 +1,437 @@
+{
+  "documents": [
+    {
+      "id": "1784636634784-ff0b2f570d584",
+      "name": "demo_commissioning_assistant.pdf",
+      "size": 6562,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:23:54.784Z",
+      "preview": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire ala",
+      "content": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire alarm interface check Ready No open issue Low What the assistant should say The commissioning assistant should flag the first two tests as likely failures, explain why the unresolved punch-list items matter, and recommend closing them before IST execution. Judge talking point: This feature reduces rework by predicting failure before the test is even run. -- 1 of 1 --"
+    },
+    {
+      "id": "1784636634812-5b20efed37735",
+      "name": "demo_geospatial_tracking.pdf",
+      "size": 6585,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:23:54.812Z",
+      "preview": "ProjectMind Demo Pack Page 1 Geospatial Shipment Tracking - Route Status Use this PDF to show a shipment map or route overview that pairs location status with schedule risk. It is visually nice, but the real value is linking shipment movement to task exposure. Shipment status board Equipment Origin Current stage Status UPS Jebel Ali Port In transit Delayed Transformer Factory yard At dispatch hub At risk Chiller Local warehouse On site On track Switchgear OEM plant Customs clearance Watch How to",
+      "content": "ProjectMind Demo Pack Page 1 Geospatial Shipment Tracking - Route Status Use this PDF to show a shipment map or route overview that pairs location status with schedule risk. It is visually nice, but the real value is linking shipment movement to task exposure. Shipment status board Equipment Origin Current stage Status UPS Jebel Ali Port In transit Delayed Transformer Factory yard At dispatch hub At risk Chiller Local warehouse On site On track Switchgear OEM plant Customs clearance Watch How to narrate it The map should make it obvious where a shipment is, whether it is late, and which downstream installation task it affects. The goal is not just map aesthetics, but early schedule warning. Judge talking point: This is a strong visual layer on top of the same prediction engine. -- 1 of 1 --"
+    },
+    {
+      "id": "1784636634834-e73f3486294c7",
+      "name": "demo_schedule_delay.pdf",
+      "size": 6461,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:23:54.834Z",
+      "preview": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight",
+      "content": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight downstream tasks: UPS installation, electrical integration, commissioning readiness, and final handover. Judge talking point: This is the core predictive engine, because one delayed shipment changes the completion date. -- 1 of 1 --"
+    },
+    {
+      "id": "1784635446290-c76f9dad49ecb",
+      "name": "demo_commissioning_assistant.pdf",
+      "size": 6562,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:04:06.290Z",
+      "preview": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire ala",
+      "content": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire alarm interface check Ready No open issue Low What the assistant should say The commissioning assistant should flag the first two tests as likely failures, explain why the unresolved punch-list items matter, and recommend closing them before IST execution. Judge talking point: This feature reduces rework by predicting failure before the test is even run. -- 1 of 1 --"
+    },
+    {
+      "id": "1784635446325-fade53111632c",
+      "name": "demo_geospatial_tracking.pdf",
+      "size": 6585,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:04:06.325Z",
+      "preview": "ProjectMind Demo Pack Page 1 Geospatial Shipment Tracking - Route Status Use this PDF to show a shipment map or route overview that pairs location status with schedule risk. It is visually nice, but the real value is linking shipment movement to task exposure. Shipment status board Equipment Origin Current stage Status UPS Jebel Ali Port In transit Delayed Transformer Factory yard At dispatch hub At risk Chiller Local warehouse On site On track Switchgear OEM plant Customs clearance Watch How to",
+      "content": "ProjectMind Demo Pack Page 1 Geospatial Shipment Tracking - Route Status Use this PDF to show a shipment map or route overview that pairs location status with schedule risk. It is visually nice, but the real value is linking shipment movement to task exposure. Shipment status board Equipment Origin Current stage Status UPS Jebel Ali Port In transit Delayed Transformer Factory yard At dispatch hub At risk Chiller Local warehouse On site On track Switchgear OEM plant Customs clearance Watch How to narrate it The map should make it obvious where a shipment is, whether it is late, and which downstream installation task it affects. The goal is not just map aesthetics, but early schedule warning. Judge talking point: This is a strong visual layer on top of the same prediction engine. -- 1 of 1 --"
+    },
+    {
+      "id": "1784635446353-fd5ea381dee7b",
+      "name": "demo_schedule_delay.pdf",
+      "size": 6461,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:04:06.353Z",
+      "preview": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight",
+      "content": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight downstream tasks: UPS installation, electrical integration, commissioning readiness, and final handover. Judge talking point: This is the core predictive engine, because one delayed shipment changes the completion date. -- 1 of 1 --"
+    },
+    {
+      "id": "1784635414043-b53aeec0be825",
+      "name": "demo_commissioning_assistant.pdf",
+      "size": 6562,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:03:34.043Z",
+      "preview": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire ala",
+      "content": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire alarm interface check Ready No open issue Low What the assistant should say The commissioning assistant should flag the first two tests as likely failures, explain why the unresolved punch-list items matter, and recommend closing them before IST execution. Judge talking point: This feature reduces rework by predicting failure before the test is even run. -- 1 of 1 --"
+    },
+    {
+      "id": "1784635340054-a4f18dfb762cc",
+      "name": "demo_schedule_delay.pdf",
+      "size": 6461,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T12:02:20.054Z",
+      "preview": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight",
+      "content": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight downstream tasks: UPS installation, electrical integration, commissioning readiness, and final handover. Judge talking point: This is the core predictive engine, because one delayed shipment changes the completion date. -- 1 of 1 --"
+    },
+    {
+      "id": "1784633703360-608714ca79a41",
+      "name": "demo_commissioning_assistant.pdf",
+      "size": 6562,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T11:35:03.360Z",
+      "preview": "ProjectMind Demo Pack Page 1 Commissioning Assistant - IST Checklist Use this PDF to demonstrate how the assistant compares a test script against known open punch-list items and warns about likely failures before testing starts. Checklist vs open issues Test step Expected status Known issue Risk Temporary power energization Ready UPS delivery delayed High Switchgear functional test Ready Incomplete install in panel room High BMS integration test Ready Pending I/O tag verification Medium Fire ala"
+    },
+    {
+      "id": "1784633697214-4c18a7479aac4",
+      "name": "demo_geospatial_tracking.pdf",
+      "size": 6585,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T11:34:57.214Z",
+      "preview": "ProjectMind Demo Pack Page 1 Geospatial Shipment Tracking - Route Status Use this PDF to show a shipment map or route overview that pairs location status with schedule risk. It is visually nice, but the real value is linking shipment movement to task exposure. Shipment status board Equipment Origin Current stage Status UPS Jebel Ali Port In transit Delayed Transformer Factory yard At dispatch hub At risk Chiller Local warehouse On site On track Switchgear OEM plant Customs clearance Watch How to"
+    },
+    {
+      "id": "1784633686638-49a363499041f",
+      "name": "demo_schedule_delay.pdf",
+      "size": 6461,
+      "mimeType": "application/pdf",
+      "uploadedAt": "2026-07-21T11:34:46.638Z",
+      "preview": "ProjectMind Demo Pack Page 1 Airport Expansion Phase II - Schedule Slip Scenario Use this PDF to show the judges how the app ingests a project document and explains the delay chain from procurement to final handover. What the model should extract Item Value Project Airport Expansion Phase II Delayed item UPS delivery Planned date Jul 18, 2026 Actual date Jul 24, 2026 Expected impact Project completion slips by 1 week Core message for the demo When UPS delivery slips, the system should highlight"
+    }
+  ],
+  "messages": [
+    {
+      "role": "assistant",
+      "content": "I am connected to the schedule model, shipment feed, risk register, analytics summary, and uploaded documents."
+    },
+    {
+      "role": "user",
+      "content": "Summarize the biggest schedule, shipment, and risk concerns for this EPC project."
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "Which milestones are affected by delayed procurement packages?"
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "Prepare an executive update on budget variance and completion."
+    },
+    {
+      "role": "assistant",
+      "content": "ProjectMind backend context\nDocuments uploaded: 0\nChat messages stored: 6\nNotes saved: 0. Ask me about schedule, shipment, documents, or risk impact and I will answer from the current saved project state."
+    },
+    {
+      "role": "user",
+      "content": "Prepare an executive update on budget variance and completion."
+    },
+    {
+      "role": "assistant",
+      "content": "ProjectMind backend context\nDocuments uploaded: 0\nChat messages stored: 8\nNotes saved: 0. Ask me about schedule, shipment, documents, or risk impact and I will answer from the current saved project state."
+    },
+    {
+      "role": "user",
+      "content": "what delay can affect the airport project the most"
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "what delay can affect the airport project the most"
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "Summarize the biggest schedule, shipment, and risk concerns for this EPC project."
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "Summarize the top project delivery risks for this month."
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "Which milestones are affected by delayed procurement packages?"
+    },
+    {
+      "role": "assistant",
+      "content": "The schedule is most exposed at procurement-linked tasks. Shipment slips should feed into downstream installation and commissioning risk immediately."
+    },
+    {
+      "role": "user",
+      "content": "Prepare an executive update on budget variance and completion."
+    },
+    {
+      "role": "assistant",
+      "content": "ProjectMind backend context\nDocuments uploaded: 11\nChat messages stored: 20\nNotes saved: 0. Ask me about schedule, shipment, documents, or risk impact and I will answer from the current saved project state."
+    }
+  ],
+  "notes": [],
+  "project": {
+    "projectName": "Airport Expansion Phase II",
+    "executiveSummary": "AI analysis detected a 0-day slip on Long-lead equipment. Project completion shifts downstream. Commissioning and logistics are also affected.",
+    "dashboard": {
+      "health": "At Risk",
+      "completion": 91,
+      "activeRisks": 3,
+      "budgetUsed": 69,
+      "note": "AI analysis detected a 0-day slip on Long-lead equipment. Project completion shifts downstream. Commissioning and logistics are also affected."
+    },
+    "schedule": {
+      "projectDuration": 31,
+      "slipDays": 0,
+      "slipWeeks": 1,
+      "slipHeadline": "Long-lead equipment slipped by 0 days. Project completion shifts downstream.",
+      "criticalPath": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "tasks": [
+        {
+          "id": "A",
+          "name": "Design freeze",
+          "duration": 5,
+          "dependsOn": [],
+          "group": "Engineering"
+        },
+        {
+          "id": "B",
+          "name": "Long-lead procurement",
+          "duration": 10,
+          "dependsOn": [
+            "A"
+          ],
+          "group": "Procurement"
+        },
+        {
+          "id": "C",
+          "name": "UPS delivery",
+          "duration": 8,
+          "dependsOn": [
+            "B"
+          ],
+          "group": "Procurement"
+        },
+        {
+          "id": "D",
+          "name": "UPS installation",
+          "duration": 6,
+          "dependsOn": [
+            "C"
+          ],
+          "group": "Construction"
+        },
+        {
+          "id": "E",
+          "name": "Electrical integration",
+          "duration": 7,
+          "dependsOn": [
+            "D"
+          ],
+          "group": "MEP"
+        },
+        {
+          "id": "F",
+          "name": "Commissioning readiness",
+          "duration": 4,
+          "dependsOn": [
+            "E"
+          ],
+          "group": "Commissioning"
+        },
+        {
+          "id": "G",
+          "name": "Final handover",
+          "duration": 3,
+          "dependsOn": [
+            "F"
+          ],
+          "group": "Commissioning"
+        },
+        {
+          "id": "H",
+          "name": "Non-critical fit-out",
+          "duration": 9,
+          "dependsOn": [
+            "B"
+          ],
+          "group": "Construction"
+        }
+      ],
+      "shipments": [
+        {
+          "id": "SHIP-01",
+          "equipment": "Long-lead equipment",
+          "taskId": "C",
+          "planned": "Unknown",
+          "actual": "Unknown",
+          "slipDays": 0
+        }
+      ]
+    },
+    "risks": [
+      {
+        "risk": "Long-lead equipment delivery delay",
+        "priority": "High",
+        "milestone": "UPS installation",
+        "owner": "Procurement",
+        "recommendation": "Expedite vendor dispatch and resequence dependent tasks."
+      },
+      {
+        "risk": "Commissioning test failure risk",
+        "priority": "High",
+        "milestone": "IST execution",
+        "owner": "Commissioning",
+        "recommendation": "Close open punch-list items before starting tests."
+      },
+      {
+        "risk": "Shipment visibility risk",
+        "priority": "Medium",
+        "milestone": "Material arrival",
+        "owner": "Logistics",
+        "recommendation": "Track live shipment status and alert downstream teams early."
+      }
+    ],
+    "commissioning": [
+      {
+        "test": "Temporary power energization",
+        "expected": "Ready",
+        "issue": "Open punch list item",
+        "result": "At risk"
+      },
+      {
+        "test": "Switchgear functional test",
+        "expected": "Ready",
+        "issue": "Pending install",
+        "result": "At risk"
+      },
+      {
+        "test": "BMS integration test",
+        "expected": "Ready",
+        "issue": "Pending I/O verification",
+        "result": "Watch"
+      },
+      {
+        "test": "Fire alarm interface check",
+        "expected": "Ready",
+        "issue": "No open issue",
+        "result": "Pass"
+      }
+    ],
+    "tracking": [
+      {
+        "equipment": "UPS",
+        "location": "In transit",
+        "stage": "In transit",
+        "status": "On track"
+      },
+      {
+        "equipment": "Transformer",
+        "location": "Dispatch hub",
+        "stage": "At dispatch hub",
+        "status": "On track"
+      },
+      {
+        "equipment": "Chiller",
+        "location": "Local warehouse",
+        "stage": "On site",
+        "status": "Watch"
+      },
+      {
+        "equipment": "Switchgear",
+        "location": "Vendor plant",
+        "stage": "Customs clearance",
+        "status": "On track"
+      }
+    ],
+    "analytics": {
+      "widgets": [
+        {
+          "label": "Schedule Adherence",
+          "value": 98,
+          "note": "No schedule slip detected."
+        },
+        {
+          "label": "Procurement Progress",
+          "value": 76,
+          "note": "Long-lead shipments are feeding the risk engine."
+        },
+        {
+          "label": "Budget Performance",
+          "value": 82,
+          "note": "Derived from the current project risk load."
+        },
+        {
+          "label": "Completion Forecast",
+          "value": 94,
+          "note": "1 week forecast movement from the uploaded documents."
+        }
+      ],
+      "timelineRows": [
+        {
+          "month": "Jan",
+          "plan": 12,
+          "actual": 11
+        },
+        {
+          "month": "Feb",
+          "plan": 22,
+          "actual": 20
+        },
+        {
+          "month": "Mar",
+          "plan": 34,
+          "actual": 31
+        },
+        {
+          "month": "Apr",
+          "plan": 48,
+          "actual": 44
+        },
+        {
+          "month": "May",
+          "plan": 60,
+          "actual": 55
+        },
+        {
+          "month": "Jun",
+          "plan": 72,
+          "actual": 67
+        },
+        {
+          "month": "Jul",
+          "plan": 91,
+          "actual": 91
+        }
+      ]
+    },
+    "insights": [
+      "Long-lead equipment slipped from  to .",
+      "Commissioning checklist contains likely failure points linked to open punch-list items.",
+      "Shipment board shows delayed or at-risk equipment that can be traced back to schedule tasks."
+    ],
+    "updatedAt": "2026-07-21T12:23:54.837Z"
+  }
+}

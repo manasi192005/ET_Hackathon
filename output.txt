@@ -1,0 +1,369 @@
+Must-build  (core  demo  —  this  is  your  causal  chain)  
+1.  Schedule  &  Critical  Path  Model  
+●  Ingest  a  project  schedule  (even  a  simplified  WBS/Gantt  —  CSV  or  mock  Primavera  
+export)
+ 
+with
+ 
+task
+ 
+dependencies
+ ●  Identify  which  tasks  are  on  the  critical  path  ●  Simple  engine:  given  a  delay  to  task  X,  propagate  forward  through  dependencies  to  
+compute
+ 
+total
+ 
+project
+ 
+slip
+ 
+2.  Equipment/Shipment  Tracker  →  Risk  Feed  
+●  A  feed  (can  be  simulated/mocked  data  for  demo)  of  long-lead  equipment  (UPS,  
+transformers,
+ 
+chillers,
+ 
+switchgear)
+ 
+with
+ 
+expected
+ 
+vs.
+ 
+actual
+ 
+ship/delivery
+ 
+dates
+ ●  Each  equipment  item  is  linked  to  a  specific  schedule  task  (e.g.,  "UPS  installation"  
+depends
+ 
+on
+ 
+"UPS
+ 
+delivery")
+ ●  When  a  shipment  slips,  it  feeds  directly  into  the  schedule  model  above  
+3.  The  "aha"  prediction  
+●  Given  a  delayed  shipment  →  auto-calculate  downstream  schedule  impact  →  show  
+"This
+ 
+will
+ 
+delay
+ 
+project
+ 
+completion
+ 
+by
+ 
+X
+ 
+weeks"
+ 
+with
+ 
+the
+ 
+affected
+ 
+critical
+ 
+path
+ 
+highlighted
+ ●  This  is  your  headline  demo  moment  —  build  this  first,  get  it  rock  solid,  then  add  
+polish
+ 
+around
+ 
+it
+ 
+Should-build  (differentiators,  matches  literature  gaps)  
+4.  RAG-based  Spec/Submittal  Checker  
+●  Upload  a  spec  sheet  (PDF)  and  an  equipment  datasheet  (PDF)  →  RAG  pipeline  
+flags
+ 
+mismatches
+ 
+(voltage
+ 
+rating,
+ 
+capacity,
+ 
+clearance
+ 
+requirements,
+ 
+etc.)
+ ●  This  is  the  gap  nobody's  filled  for  MEP/data  center  equipment  specifically  —  strong  
+differentiator,
+ 
+and
+ 
+RAG
+ 
+is
+ 
+explicitly
+ 
+named
+ 
+in
+ 
+your
+ 
+PS
+ 
+tech
+ 
+list
+ ●  Bonus:  if  a  substitute  part  is  proposed  (common  when  original  is  delayed),  
+auto-trigger
+ 
+a
+ 
+re-check
+ 
+against
+ 
+spec
+ 
+5.  Risk  Dashboard  /  Alerts  
+●  Single  view:  active  risks  ranked  by  schedule  impact  (days)  ×  probability  ●  Ties  procurement,  schedule,  and  commissioning  readiness  into  one  screen  —  this  
+"unified
+ 
+view"
+ 
+is
+ 
+literally
+ 
+what
+ 
+every
+ 
+paper
+ 
+says
+ 
+is
+ 
+missing
+ 
+(fragmented
+ 
+data
+ 
+systems)
+ 
+6.  Simple  Multi-Agent  Orchestration  
+●  Even  a  lightweight  version:  a  "Procurement  Agent"  (watches  shipments)  →  
+"Schedule
+ 
+Agent"
+ 
+(computes
+ 
+impact)
+ 
+→
+ 
+"Compliance
+ 
+Agent"
+ 
+(re-checks
+ 
+spec
+ 
+on
+ 
+substitutions)
+ 
+talking
+ 
+to
+ 
+each
+ 
+other
+ 
+
+---PAGE---
+
+●  Doesn't  need  to  be  a  fully  autonomous  agent  framework  —  even  a  clear  pipeline  with  
+LLM-driven
+ 
+reasoning
+ 
+at
+ 
+each
+ 
+stage
+ 
+demonstrates
+ 
+the
+ 
+concept
+ 
+and
+ 
+hits
+ 
+your
+ 
+tech
+ 
+stack
+ 
+list
+ 
+Stretch  (if  time  remains)  
+7.  Computer  Vision  Progress  Check  
+●  Feed  in  site  photos  of  an  MEP  room,  use  an  object  detection  model  to  flag  installed  
+vs.
+ 
+expected
+ 
+equipment
+ 
+status
+ ●  Riskier  to  get  working  well  in  a  hackathon  timeframe  (data/training  constraints)  —  
+only
+ 
+attempt
+ 
+if
+ 
+1-6
+ 
+are
+ 
+solid
+ 
+8.  Commissioning  Assistant  
+●  LLM  reads  a  commissioning  test  script  /  IST  checklist  and  cross-references  it  against  
+known
+ 
+open
+ 
+punch-list
+ 
+items
+ 
+or
+ 
+incomplete
+ 
+installs,
+ 
+flagging
+ 
+likely
+ 
+test
+ 
+failures
+ 
+before
+ 
+they
+ 
+happen
+ 
+9.  Geospatial  Tracking  Map  
+●  Visual  map  of  equipment  shipment  locations/status  —  nice  visual  polish,  but  lower  
+functional
+ 
+value
+ 
+than
+ 
+the
+ 
+core
+ 
+prediction
+ 
+engine
+ 
+Suggested  build  order  for  a  hackathon  
+1.  Schedule  model  +  critical  path  calc  (foundation  everything  else  plugs  into)  2.  Mock  shipment  feed  wired  into  schedule  model  →  get  the  "UPS  delay  =  2  week  slip"  
+demo
+ 
+working
+ 
+end-to-end
+ 3.  RAG  spec-checker  as  a  second,  clearly  separate  demo-able  feature  4.  Dashboard  tying  both  together  visually  5.  Multi-agent  framing  as  the  "architecture  story"  you  tell  judges,  even  if  implementation  
+is
+ 
+simpler
+ 
+than
+ 
+a
+ 
+true
+ 
+agent
+ 
+system
+ 6.  Only  then  reach  for  CV/commissioning  if  time  allows  ●   
+ 
+Overall  Research  Gap  
+Current  research  solves  individual  problems  (delay  prediction,  compliance,  CV  monitoring,  
+shipment
+ 
+tracking)
+ 
+but
+ 
+no
+ 
+solution
+ 
+provides
+ 
+an
+ 
+end-to-end
+ 
+AI
+ 
+platform
+ 
+that
+ 
+connects:
+ 
+Procurement  →  Shipment  Tracking  →  Schedule  Risk  →  Specification  Compliance  →  
+Commissioning
+ 
+This  integrated,  multi-agent  workflow  is  the  primary  gap  that  the  hackathon  problem  
+statement
+ 
+encourages
+ 
+participants
+ 
+to
+ 
+address.
+ 
+
+---PAGE---
+
+ 
+EPC-specific  (most  relevant)  
+1.  Smart  EPC:  Leveraging  AI  for  EPC  Excellence —  AI  across  full  EPC  lifecycle;  claims  15-20%  cost  cuts,  10-25%  faster  delivery.  Conceptual,  no  working  system.  2.  Choosing  the  Right  Path  for  AI  Integration  in  Engineering  Companies —  Strategic  AI-adoption  framework  from  a  real  EPC  contractor.  No  technical  model.  3.  Revolutionizing  Procurement:  AI  &  Data  Analytics  in  EPC —  Proposes  Critical  Chain  +  buffer  management  for  EPC  procurement.  Theory  only,  no  predictive  model  built.  4.  AI/Text-Mining  for  Contractor  Risk  in  EPC  Contracts —  Built  a  real  tool  (CRC  +  TFA  modules)  to  flag  risky  contract  clauses.  Targets  contracts,  not  technical  specs.  5.  AI-Enabled  Contractual  Knowledge  &  Risk  Governance  in  EPC —  Proposes  RAG  +  knowledge  graphs  for  EPC  contract  risk.  Research  agenda,  not  implemented.  
+Data  center  delay  context  (industry  data,  for  grounding)   6. Hyperscale  Data  Center  News  2026  (irecruit) —  Grid  delays  4-5  years,  labor  shortages  driving  timeline  risk.   7. Data  Center  Knowledge:  Hyperscalers  2026 —  $162B  in  projects  blocked/delayed  as  of  mid-2025.   8. TechRadar:  Supply  chain  delays —  Memory/storage  cost  spikes;  "one  delayed  piece  stalls  the  whole  project."   9. Tech  Insider:  7GW  Capacity  Crisis —  Transformer  lead  times  as  single  biggest  bottleneck  (China-dependent  supply  chain).   10. DC  Byte  2026  Outlook —  Widening  gap  between  committed  vs.  delivered  capacity  globally.   11. Data  Center  Watch  report —  Tracks  specific  projects  blocked/delayed  by  local  opposition/permitting.   12. Technavio  Hyperscale  Market  Report —  Grid  interconnection  adding  18-24  months  to  timelines.   13. Ropes  &  Gray:  DC  Investment  2026 —  Financing/risk-allocation  shifts,  on-site  power  as  delay  workaround.   14. IndexBox:  Construction  Delays  2026 —  MEP  complexity  now  dominates  data  center  
+project
+ 
+scope.
+ 
