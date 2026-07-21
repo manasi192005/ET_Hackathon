@@ -97,6 +97,12 @@ export async function fetchAppState() {
   return (await response.json()) as AppState
 }
 
+export async function resetSession() {
+  const response = await fetch(`${baseUrl}/api/reset`, { method: "POST" })
+  if (!response.ok) throw new Error("Failed to reset session")
+  return response.json() as Promise<{ ok: boolean }>
+}
+
 export async function uploadDocuments(files: File[]) {
   const formData = new FormData()
   files.forEach((file) => formData.append("files", file))
@@ -105,7 +111,13 @@ export async function uploadDocuments(files: File[]) {
     body: formData,
   })
   if (!response.ok) throw new Error("Failed to upload documents")
-  return response.json() as Promise<{ documents: StoredDocument[]; added: StoredDocument[]; project: ProjectModel }>
+  return response.json() as Promise<{ documents: StoredDocument[]; added: StoredDocument[] }>
+}
+
+export async function analyzeDocuments() {
+  const response = await fetch(`${baseUrl}/api/analyze`, { method: "POST" })
+  const data = await response.json() as { ok: boolean; project?: ProjectModel; message?: string }
+  return data
 }
 
 export async function sendChatPrompt(prompt: string) {

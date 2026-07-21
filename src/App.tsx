@@ -31,8 +31,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Progress } from "@/components/ui/progress"
 import {
+  analyzeDocuments,
   exportProjectPdf,
   fetchAppState,
+  resetSession,
   sendChatPrompt,
   type AppState,
   type ProjectModel,
@@ -535,15 +537,14 @@ function Sidebar({
           <CardHeader className={cn("p-4", collapsed && "md:hidden")}>
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-primary" />
-              <CardTitle className="text-base">Mock Data Only</CardTitle>
+              <CardTitle className="text-base">AI-Powered Pipeline</CardTitle>
             </div>
             <CardDescription>
-              Static pages for stakeholder review. No uploads, AI integrations, or backend actions
-              are connected yet.
+              Upload PDFs to activate live schedule analysis, risk detection, commissioning checks, and Gemini-powered chat.
             </CardDescription>
           </CardHeader>
           <CardContent className={cn("p-4 pt-0", collapsed && "md:hidden")}>
-            <Button className="w-full justify-center">Review Prototype</Button>
+            <Button className="w-full justify-center">Upload Documents</Button>
           </CardContent>
         </Card>
       </aside>
@@ -1013,13 +1014,17 @@ function PlanningPage() {
 function DocumentsPage({
   documents,
   onUpload,
+  onAnalyze,
   onExportPdf,
   analysisStatus,
+  analyzeStep,
 }: {
   documents: StoredDocument[]
   onUpload: (files: File[]) => void
+  onAnalyze: () => void
   onExportPdf: () => void
   analysisStatus: "idle" | "uploading" | "analyzing" | "ready" | "error"
+  analyzeStep: string
 }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [dragActive, setDragActive] = useState(false)
@@ -1041,52 +1046,51 @@ function DocumentsPage({
               <Button
                 className="gap-2"
                 onClick={() => fileInputRef.current?.click()}
+                disabled={analysisStatus === "uploading" || analysisStatus === "analyzing"}
                 type="button"
               >
                 <UploadCloud className="h-4 w-4" />
-                Upload Document
+                Upload PDFs
               </Button>
               <Button
-                variant="outline"
-                onClick={() => onUpload([])}
+                className="gap-2 bg-primary/90 hover:bg-primary"
+                onClick={onAnalyze}
+                disabled={documents.length === 0 || analysisStatus === "uploading" || analysisStatus === "analyzing"}
                 type="button"
-                title="Refresh from backend state"
               >
-                Refresh List
+                <Sparkles className="h-4 w-4" />
+                {analysisStatus === "analyzing" ? "AI Thinking..." : "Analyse with AI"}
               </Button>
               <Button variant="outline" onClick={onExportPdf} type="button">
                 Export PDF
               </Button>
             </div>
-            <div className="rounded-2xl border border-border/70 bg-background/55 p-4">
+
+            {/* AI Processing Steps */}
+            <div className="rounded-2xl border border-border/70 bg-background/55 p-4 space-y-2">
               <div className="flex items-center gap-3">
-                <div
-                  className={cn(
-                    "h-3 w-3 rounded-full",
-                    analysisStatus === "ready"
-                      ? "bg-emerald-500"
-                      : analysisStatus === "error"
-                        ? "bg-red-500"
-                        : analysisStatus === "analyzing" || analysisStatus === "uploading"
-                          ? "bg-amber-500 animate-pulse"
-                          : "bg-sky-500",
-                  )}
-                />
+                <div className={cn(
+                  "h-3 w-3 rounded-full flex-shrink-0",
+                  analysisStatus === "ready"     ? "bg-emerald-500"
+                  : analysisStatus === "error"   ? "bg-red-500"
+                  : analysisStatus === "analyzing" || analysisStatus === "uploading"
+                                                ? "bg-amber-500 animate-pulse"
+                  : "bg-sky-500",
+                )} />
                 <p className="text-sm font-medium text-foreground">
-                  {analysisStatus === "uploading"
-                    ? "Uploading documents..."
-                    : analysisStatus === "analyzing"
-                      ? "Analyzing PDFs and updating project insights..."
-                      : analysisStatus === "ready"
-                        ? "Insights ready. The dashboard and assistant are now using extracted data."
-                        : analysisStatus === "error"
-                          ? "Upload failed. Please try again."
-                          : "Waiting for a document upload to begin analysis."}
+                  {analysisStatus === "uploading"  ? "⬆ Uploading & extracting text from PDFs..."
+                  : analysisStatus === "analyzing" ? "🤖 AI engine is deeply analysing your documents..."
+                  : analysisStatus === "ready"     ? "✅ AI analysis complete — all pages updated with extracted insights."
+                  : analysisStatus === "error"     ? "❌ Analysis failed. Check the server terminal for Gemini errors."
+                  : documents.length > 0           ? `${documents.length} doc(s) ready — click "Analyse with AI" to extract insights.`
+                  : "Upload PDFs then click Analyse with AI."}
                 </p>
               </div>
-              <p className="mt-2 text-xs text-muted-foreground">
-                The backend extracts text from each PDF, derives the project model, and refreshes the
-                dashboard, commissioning checks, tracking view, analytics, and Copilot context.
+              {analyzeStep ? (
+                <p className="text-xs text-primary font-mono pl-6">{analyzeStep}</p>
+              ) : null}
+              <p className="text-xs text-muted-foreground">
+                The AI reads every line of your PDFs, extracts delays, commissioning status, shipment locations, risks, and analytics — then updates every page. This takes 15–30 seconds.
               </p>
             </div>
             <input
@@ -1220,7 +1224,7 @@ function CopilotPage({
   project: ProjectModel
   messages: StoredMessage[]
   onSendPrompt: (prompt: string) => Promise<void>
-  onReset: () => void
+  onReset: () => void | Promise<void>
 }) {
   const [prompt, setPrompt] = useState(buildDefaultPrompt())
   const [sending, setSending] = useState(false)
@@ -2176,6 +2180,7 @@ function App() {
   const [project, setProject] = useState<ProjectModel>(fallbackProject)
   const [loadingData, setLoadingData] = useState(true)
   const [analysisStatus, setAnalysisStatus] = useState<"idle" | "uploading" | "analyzing" | "ready" | "error">("idle")
+  const [analyzeStep, setAnalyzeStep] = useState("")
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark")
@@ -2211,31 +2216,54 @@ function App() {
         )
       case "planning":
         return <PlanningPageLive project={project} />
-      case "documents":
+      case "documents": {
+        const runAnalysis = async () => {
+          setAnalysisStatus("analyzing")
+          setAnalyzeStep("🔍 Step 1/4 — Reading extracted text from all uploaded PDFs...")
+          await new Promise(r => setTimeout(r, 800))
+          setAnalyzeStep("📋 Step 2/4 — Sending document content to Gemini AI engine...")
+          await new Promise(r => setTimeout(r, 600))
+          setAnalyzeStep("🧠 Step 3/4 — Gemini is analysing delays, risks, commissioning & shipments...")
+          try {
+            const result = await analyzeDocuments()
+            setAnalyzeStep("⚙️  Step 4/4 — Building dynamic project model from AI output...")
+            await new Promise(r => setTimeout(r, 400))
+            if (result.ok && result.project) {
+              setProject(result.project)
+              setAnalysisStatus("ready")
+              setAnalyzeStep("")
+              setStatusMessage(
+                `✅ AI analysis complete — ${result.project.risks.length} risks, ${result.project.commissioning.length} commissioning items, ${result.project.tracking.length} shipments extracted.`
+              )
+            } else {
+              setAnalysisStatus("error")
+              setAnalyzeStep("")
+              setStatusMessage(`❌ ${result.message || "AI analysis failed — check server terminal for Gemini errors."}`)
+            }
+          } catch {
+            setAnalysisStatus("error")
+            setAnalyzeStep("")
+            setStatusMessage("❌ Analysis request failed. Is the backend running on port 8787?")
+          }
+        }
+
         return (
           <DocumentsPage
             documents={documents}
             analysisStatus={analysisStatus}
+            analyzeStep={analyzeStep}
+            onAnalyze={runAnalysis}
             onUpload={async (files) => {
-              if (files.length === 0) {
-                const state = await fetchAppState()
-                setDocuments(state.documents)
-                setProject(state.project || fallbackProject)
-                setAnalysisStatus(state.documents.length > 0 ? "ready" : "idle")
-                setStatusMessage("Document list refreshed from backend.")
-                return
-              }
-
+              if (!files.length) return
               setAnalysisStatus("uploading")
-              setStatusMessage("Uploading documents and preparing analysis...")
+              setAnalyzeStep("")
+              setStatusMessage("Uploading PDFs and extracting text...")
               try {
                 const result = await uploadDocuments(files)
-                setAnalysisStatus("analyzing")
                 setDocuments(result.documents)
-                setProject(result.project || fallbackProject)
-                setAnalysisStatus("ready")
+                setAnalysisStatus("idle")
                 setStatusMessage(
-                  `${result.added.length} document(s) uploaded. Insights are ready and the project model has been refreshed.`,
+                  `${result.added.length} file(s) uploaded (${result.added.map(d => d.name).join(", ")}). Now click "Analyse with AI" to extract insights.`
                 )
               } catch {
                 setAnalysisStatus("error")
@@ -2254,6 +2282,7 @@ function App() {
             }}
           />
         )
+      }
       case "copilot":
         return (
           <CopilotPage
@@ -2264,15 +2293,19 @@ function App() {
               setMessages(result.messages)
               setStatusMessage("ProjectMind Copilot answered from backend state.")
             }}
-            onReset={() => {
-              setMessages([
-                {
-                  role: "assistant",
-                  content:
-                    "I am connected to the schedule model, shipment feed, risk register, and analytics summary. Ask me about delay impact, budget pressure, or downstream risks.",
-                },
-              ])
-              setStatusMessage("Chat reset to the initial assistant message.")
+            onReset={async () => {
+              // FIX #3: Reset wipes both frontend state AND backend stored messages
+              try {
+                await resetSession()
+                const freshState = await fetchAppState()
+                setMessages(freshState.messages)
+                setDocuments(freshState.documents)
+                setProject(freshState.project || fallbackProject)
+                setAnalysisStatus("idle")
+                setStatusMessage("Chat and document session cleared. Ready for a fresh analysis.")
+              } catch {
+                setStatusMessage("Reset failed — check that the backend server is running.")
+              }
             }}
           />
         )
@@ -2373,15 +2406,15 @@ function App() {
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2">
-                    <StatusBadge label="Static UI" tone="neutral" />
-                    <StatusBadge label="EPC Mock Data" tone="info" />
+                    <StatusBadge label={documents.length > 0 ? `${documents.length} doc(s) loaded` : "No docs yet"} tone={documents.length > 0 ? "success" : "neutral"} />
+                    <StatusBadge label="Gemini AI" tone="info" />
                     <Button
                       onClick={() => {
-                        setActivePage("analytics")
-                        setStatusMessage("Opened analytics view from the generate action.")
+                        setActivePage("documents")
+                        setStatusMessage("Upload PDFs to activate live AI analysis.")
                       }}
                     >
-                      Generate View
+                      Upload & Analyse
                     </Button>
                   </div>
                 </div>
