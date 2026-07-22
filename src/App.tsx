@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import {
   BarChart3,
   Bell,
@@ -13,15 +13,19 @@ import {
   Filter,
   FolderKanban,
   LayoutDashboard,
+  LogOut,
   Menu,
   MessageSquareShare,
   Moon,
   Search,
+  Settings,
   ShieldAlert,
   Sparkles,
   SunMedium,
   UploadCloud,
+  User,
   Wallet,
+  X,
 } from "lucide-react"
 
 import { Avatar } from "@/components/ui/avatar"
@@ -51,6 +55,59 @@ import {
   type ChatMessage,
 } from "@/lib/brain"
 import { cn } from "@/lib/utils"
+
+// ─── Markdown renderer for AI chat responses ───────────────────────────────
+function renderMarkdown(text: string): React.ReactNode {
+  const lines = text.split("\n")
+  const elements: React.ReactNode[] = []
+  let key = 0
+
+  const renderInline = (str: string) => {
+    // Handle **bold** and *italic*
+    const parts = str.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g)
+    return parts.map((part, i) => {
+      if (part.startsWith("**") && part.endsWith("**"))
+        return <strong key={i} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>
+      if (part.startsWith("*") && part.endsWith("*"))
+        return <em key={i} className="italic">{part.slice(1, -1)}</em>
+      return part
+    })
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const raw = lines[i]
+
+    if (/^#{1,2}\s/.test(raw)) {
+      const text = raw.replace(/^#{1,2}\s+/, "")
+      elements.push(<p key={key++} className="mt-4 mb-1 text-sm font-bold text-foreground tracking-wide uppercase">{renderInline(text)}</p>)
+    } else if (/^#{3,4}\s/.test(raw)) {
+      const text = raw.replace(/^#{3,4}\s+/, "")
+      elements.push(<p key={key++} className="mt-3 mb-0.5 text-sm font-semibold text-foreground">{renderInline(text)}</p>)
+    } else if (/^[-*•]\s/.test(raw)) {
+      const text = raw.replace(/^[-*•]\s+/, "")
+      elements.push(
+        <div key={key++} className="flex gap-2 text-sm leading-6 text-muted-foreground">
+          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+          <span>{renderInline(text)}</span>
+        </div>
+      )
+    } else if (/^\s{2,}[-*•]\s/.test(raw)) {
+      const text = raw.replace(/^\s+[-*•]\s+/, "")
+      elements.push(
+        <div key={key++} className="ml-4 flex gap-2 text-sm leading-6 text-muted-foreground">
+          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/50" />
+          <span>{renderInline(text)}</span>
+        </div>
+      )
+    } else if (raw.trim() === "" || raw.trim() === "---") {
+      if (raw.trim() === "---") elements.push(<hr key={key++} className="my-3 border-border/50" />)
+      // else: skip blank lines between blocks
+    } else if (raw.trim()) {
+      elements.push(<p key={key++} className="text-sm leading-6 text-muted-foreground">{renderInline(raw)}</p>)
+    }
+  }
+  return <div className="space-y-1">{elements}</div>
+}
 
 type PageId =
   | "dashboard"
@@ -484,10 +541,9 @@ function Sidebar({
               <Bot className="h-5 w-5" />
             </div>
             <div className={cn("transition-opacity", collapsed && "md:hidden")}>
-              <p className="text-sm font-semibold uppercase tracking-[0.32em] text-primary">
-                EPC Suite
+              <p className="text-xl font-bold tracking-tight text-foreground">
+                ProjectMind
               </p>
-              <p className="text-sm text-muted-foreground">ProjectMind Enterprise</p>
             </div>
           </div>
           <Button
@@ -532,21 +588,6 @@ function Sidebar({
             )
           })}
         </div>
-
-        <Card className="mt-auto overflow-hidden border-sidebar-border bg-gradient-to-br from-primary/15 via-card to-card shadow-none">
-          <CardHeader className={cn("p-4", collapsed && "md:hidden")}>
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <CardTitle className="text-base">AI-Powered Pipeline</CardTitle>
-            </div>
-            <CardDescription>
-              Upload PDFs to activate live schedule analysis, risk detection, commissioning checks, and Gemini-powered chat.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className={cn("p-4 pt-0", collapsed && "md:hidden")}>
-            <Button className="w-full justify-center">Upload Documents</Button>
-          </CardContent>
-        </Card>
       </aside>
     </>
   )
@@ -1078,20 +1119,14 @@ function DocumentsPage({
                   : "bg-sky-500",
                 )} />
                 <p className="text-sm font-medium text-foreground">
-                  {analysisStatus === "uploading"  ? "⬆ Uploading & extracting text from PDFs..."
-                  : analysisStatus === "analyzing" ? "🤖 AI engine is deeply analysing your documents..."
-                  : analysisStatus === "ready"     ? "✅ AI analysis complete — all pages updated with extracted insights."
-                  : analysisStatus === "error"     ? "❌ Analysis failed. Check the server terminal for Gemini errors."
-                  : documents.length > 0           ? `${documents.length} doc(s) ready — click "Analyse with AI" to extract insights.`
-                  : "Upload PDFs then click Analyse with AI."}
+                  {analysisStatus === "uploading"  ? "Uploading..."
+                  : analysisStatus === "analyzing" ? "Analysing..."
+                  : analysisStatus === "ready"     ? "Analysis complete."
+                  : analysisStatus === "error"     ? "Analysis failed — check the server."
+                  : documents.length > 0           ? `${documents.length} document(s) ready.`
+                  : "Upload PDFs to get started."}
                 </p>
               </div>
-              {analyzeStep ? (
-                <p className="text-xs text-primary font-mono pl-6">{analyzeStep}</p>
-              ) : null}
-              <p className="text-xs text-muted-foreground">
-                The AI reads every line of your PDFs, extracts delays, commissioning status, shipment locations, risks, and analytics — then updates every page. This takes 15–30 seconds.
-              </p>
             </div>
             <input
               ref={fileInputRef}
@@ -1268,17 +1303,7 @@ function CopilotPage({
               {itemPrompt}
             </button>
           ))}
-          <div className="rounded-2xl border border-dashed border-border/80 bg-background/45 p-4 text-sm text-muted-foreground">
-            Project context: {project.executiveSummary}
-          </div>
-          <div className="rounded-2xl border border-dashed border-border/80 bg-background/45 p-4 text-sm text-muted-foreground">
-            Gemini status:{" "}
-            {apiKeyState === "present"
-              ? "API key detected and live responses enabled."
-              : apiKeyState === "missing"
-                ? "No API key detected, using local project-aware fallback."
-                : "Checking environment..."}
-          </div>
+
         </CardContent>
       </Card>
 
@@ -1290,24 +1315,23 @@ function CopilotPage({
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="space-y-4 rounded-[1.5rem] border border-border/70 bg-background/45 p-4">
+          <div className="max-h-[520px] overflow-y-auto space-y-4 rounded-[1.5rem] border border-border/70 bg-background/45 p-4 scroll-smooth">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
-                className={message.role === "user" ? "flex justify-end" : "flex gap-3"}
+                className={message.role === "user" ? "flex justify-end" : "flex gap-3 items-start"}
               >
                 {message.role === "assistant" ? (
                   <>
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary mt-1">
                       <Bot className="h-4 w-4" />
                     </div>
-                    <div className="flex-1 rounded-2xl border border-border/70 bg-card/90 p-4">
-                      <p className="text-sm font-semibold text-foreground">ProjectMind Response</p>
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">{message.content}</p>
+                    <div className="flex-1 rounded-2xl border border-border/70 bg-card/90 p-4 max-w-[90%]">
+                      {renderMarkdown(message.content)}
                     </div>
                   </>
                 ) : (
-                  <div className="max-w-xl rounded-2xl bg-secondary/15 px-4 py-3 text-sm text-foreground">
+                  <div className="max-w-[75%] rounded-2xl bg-primary/15 px-4 py-3 text-sm text-foreground border border-primary/20">
                     {message.content}
                   </div>
                 )}
@@ -1341,9 +1365,6 @@ function CopilotPage({
                 </Button>
               </div>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Gemini status: {apiKeyState === "present" ? "API key detected" : apiKeyState === "missing" ? "No API key detected, backend fallback active" : "Checking environment"}
-            </p>
           </div>
         </CardContent>
       </Card>
@@ -1725,7 +1746,6 @@ function DashboardPageLive({
       <Card className="overflow-hidden border-primary/10 bg-gradient-to-br from-card via-card to-primary/5 shadow-glow animate-fade-in">
         <CardContent className="grid gap-8 p-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="space-y-5">
-            <StatusBadge label="AI-derived project model" tone="info" className="w-fit" />
             <div className="space-y-3">
               <h2 className="max-w-3xl text-3xl font-semibold leading-tight sm:text-4xl">
                 {project.projectName}
@@ -1734,9 +1754,9 @@ function DashboardPageLive({
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {[
-                ["Analysis", new Date(project.updatedAt).toLocaleDateString()],
-                ["Docs", `${project.projectName ? project.insights.length : 0}`],
-                ["Source", "Uploaded PDFs"],
+                ["Analysis", project.projectName === "Awaiting document analysis" ? "—" : new Date(project.updatedAt).toLocaleDateString()],
+                ["Docs", project.projectName === "Awaiting document analysis" ? "—" : `${project.insights.length}`],
+                ["Source", project.projectName === "Awaiting document analysis" ? "Upload PDFs" : "Uploaded PDFs"],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-2xl border border-border/70 bg-background/55 p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
@@ -2181,14 +2201,23 @@ function App() {
   const [loadingData, setLoadingData] = useState(true)
   const [analysisStatus, setAnalysisStatus] = useState<"idle" | "uploading" | "analyzing" | "ready" | "error">("idle")
   const [analyzeStep, setAnalyzeStep] = useState("")
+  const [bellOpen, setBellOpen] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false)
+  const [notifications, setNotifications] = useState([
+    { id: 1, text: "Upload PDFs to start AI analysis", time: "Now", read: false },
+    { id: 2, text: "ProjectMind backend connected", time: "Now", read: false },
+  ])
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark")
     window.localStorage.setItem("enterprise-theme", theme)
   }, [theme])
 
+  // Reset session on every page load (browser refresh) so documents and
+  // analysis data are always cleared — user must re-upload to get fresh data.
   useEffect(() => {
-    void fetchAppState()
+    void resetSession()
+      .then(() => fetchAppState())
       .then((state: AppState) => {
         setDocuments(state.documents)
         setMessages(state.messages)
@@ -2199,6 +2228,13 @@ function App() {
         setProject(fallbackProject)
       })
       .finally(() => setLoadingData(false))
+  }, [])
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handler = () => { setBellOpen(false); setProfileOpen(false) }
+    document.addEventListener("click", handler)
+    return () => document.removeEventListener("click", handler)
   }, [])
 
   const renderPage = () => {
@@ -2219,31 +2255,29 @@ function App() {
       case "documents": {
         const runAnalysis = async () => {
           setAnalysisStatus("analyzing")
-          setAnalyzeStep("🔍 Step 1/4 — Reading extracted text from all uploaded PDFs...")
+          setAnalyzeStep("")
           await new Promise(r => setTimeout(r, 800))
-          setAnalyzeStep("📋 Step 2/4 — Sending document content to Gemini AI engine...")
+          setAnalyzeStep("")
           await new Promise(r => setTimeout(r, 600))
-          setAnalyzeStep("🧠 Step 3/4 — Gemini is analysing delays, risks, commissioning & shipments...")
+          setAnalyzeStep("")
           try {
             const result = await analyzeDocuments()
-            setAnalyzeStep("⚙️  Step 4/4 — Building dynamic project model from AI output...")
+            setAnalyzeStep("")
             await new Promise(r => setTimeout(r, 400))
             if (result.ok && result.project) {
               setProject(result.project)
               setAnalysisStatus("ready")
               setAnalyzeStep("")
-              setStatusMessage(
-                `✅ AI analysis complete — ${result.project.risks.length} risks, ${result.project.commissioning.length} commissioning items, ${result.project.tracking.length} shipments extracted.`
-              )
+              setStatusMessage("")
             } else {
               setAnalysisStatus("error")
               setAnalyzeStep("")
-              setStatusMessage(`❌ ${result.message || "AI analysis failed — check server terminal for Gemini errors."}`)
+              setStatusMessage("")
             }
           } catch {
             setAnalysisStatus("error")
             setAnalyzeStep("")
-            setStatusMessage("❌ Analysis request failed. Is the backend running on port 8787?")
+            setStatusMessage("")
           }
         }
 
@@ -2257,17 +2291,15 @@ function App() {
               if (!files.length) return
               setAnalysisStatus("uploading")
               setAnalyzeStep("")
-              setStatusMessage("Uploading PDFs and extracting text...")
+              setStatusMessage("")
               try {
                 const result = await uploadDocuments(files)
                 setDocuments(result.documents)
                 setAnalysisStatus("idle")
-                setStatusMessage(
-                  `${result.added.length} file(s) uploaded (${result.added.map(d => d.name).join(", ")}). Now click "Analyse with AI" to extract insights.`
-                )
+                setStatusMessage("")
               } catch {
                 setAnalysisStatus("error")
-                setStatusMessage("Upload failed. Check the backend server and try again.")
+                setStatusMessage("")
               }
             }}
             onExportPdf={async () => {
@@ -2389,10 +2421,107 @@ function App() {
                         setTheme((current) => (current === "dark" ? "light" : "dark"))
                       }
                     />
-                    <Button variant="outline" size="icon" aria-label="Notifications">
-                      <Bell className="h-4 w-4" />
-                    </Button>
-                    <Avatar fallback="PM" />
+
+                    {/* Bell — Notifications Dropdown */}
+                    <div className="relative">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        aria-label="Notifications"
+                        onClick={(e) => { e.stopPropagation(); setBellOpen(v => !v); setProfileOpen(false) }}
+                        className="relative"
+                      >
+                        <Bell className="h-4 w-4" />
+                        {notifications.some(n => !n.read) && (
+                          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-destructive" />
+                        )}
+                      </Button>
+                      {bellOpen && (
+                        <div className="absolute right-0 top-12 z-50 w-80 rounded-2xl border border-border/70 bg-card shadow-xl" onClick={e => e.stopPropagation()}>
+                          <div className="flex items-center justify-between border-b border-border/50 px-4 py-3">
+                            <p className="text-sm font-semibold">Notifications</p>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => setNotifications(ns => ns.map(n => ({ ...n, read: true })))}
+                                className="text-xs text-primary hover:underline"
+                              >
+                                Mark all read
+                              </button>
+                              <button onClick={() => setBellOpen(false)}>
+                                <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="max-h-72 overflow-y-auto divide-y divide-border/30">
+                            {notifications.length === 0 ? (
+                              <p className="p-4 text-sm text-muted-foreground text-center">No notifications</p>
+                            ) : notifications.map(n => (
+                              <div
+                                key={n.id}
+                                className={cn("flex items-start gap-3 px-4 py-3 cursor-pointer hover:bg-background/60 transition-colors", !n.read && "bg-primary/5")}
+                                onClick={() => setNotifications(ns => ns.map(x => x.id === n.id ? { ...x, read: true } : x))}
+                              >
+                                <div className={cn("mt-1 h-2 w-2 shrink-0 rounded-full", n.read ? "bg-transparent" : "bg-primary")} />
+                                <div className="flex-1">
+                                  <p className="text-sm text-foreground">{n.text}</p>
+                                  <p className="text-xs text-muted-foreground mt-0.5">{n.time}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* PM — Profile Dropdown */}
+                    <div className="relative">
+                      <Avatar
+                        fallback="PM"
+                        className="cursor-pointer ring-2 ring-transparent hover:ring-primary/40 transition-all"
+                        onClick={(e) => { e.stopPropagation(); setProfileOpen(v => !v); setBellOpen(false) }}
+                      />
+                      {profileOpen && (
+                        <div className="absolute right-0 top-12 z-50 w-64 rounded-2xl border border-border/70 bg-card shadow-xl overflow-hidden" onClick={e => e.stopPropagation()}>
+                          {/* Profile Header */}
+                          <div className="bg-gradient-to-br from-primary/15 to-card px-4 py-4 border-b border-border/50">
+                            <div className="flex items-center gap-3">
+                              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-sm font-bold text-primary">PM</div>
+                              <div>
+                                <p className="text-sm font-semibold text-foreground">ProjectMind User</p>
+                                <p className="text-xs text-muted-foreground">pm@epc-suite.io</p>
+                              </div>
+                            </div>
+                          </div>
+                          {/* Menu Items */}
+                          <div className="py-1">
+                            {[
+                              { icon: User, label: "My Profile" },
+                              { icon: Settings, label: "Settings" },
+                              { icon: FolderKanban, label: "My Projects" },
+                              { icon: Bell, label: "Notification Preferences" },
+                            ].map(({ icon: Icon, label }) => (
+                              <button
+                                key={label}
+                                className="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-foreground/80 hover:bg-background/60 hover:text-foreground transition-colors"
+                                onClick={() => setProfileOpen(false)}
+                              >
+                                <Icon className="h-4 w-4 text-muted-foreground" />
+                                {label}
+                              </button>
+                            ))}
+                          </div>
+                          <div className="border-t border-border/50 py-1">
+                            <button
+                              className="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-destructive hover:bg-destructive/10 transition-colors"
+                              onClick={() => { setProfileOpen(false); setStatusMessage("Signed out from the current session.") }}
+                            >
+                              <LogOut className="h-4 w-4" />
+                              Sign Out
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -2404,25 +2533,12 @@ function App() {
                       placeholder="Search documents, milestones, risk items, or analytics widgets"
                     />
                   </div>
-
-                  <div className="flex flex-wrap items-center gap-2">
-                    <StatusBadge label={documents.length > 0 ? `${documents.length} doc(s) loaded` : "No docs yet"} tone={documents.length > 0 ? "success" : "neutral"} />
-                    <StatusBadge label="Gemini AI" tone="info" />
-                    <Button
-                      onClick={() => {
-                        setActivePage("documents")
-                        setStatusMessage("Upload PDFs to activate live AI analysis.")
-                      }}
-                    >
-                      Upload & Analyse
-                    </Button>
-                  </div>
+                  <Button
+                    onClick={() => setActivePage("documents")}
+                  >
+                    Upload &amp; Analyse
+                  </Button>
                 </div>
-
-                <p className="max-w-3xl text-sm text-muted-foreground">{currentPage.subtitle}</p>
-                {statusMessage ? (
-                  <p className="max-w-3xl text-xs text-primary">{statusMessage}</p>
-                ) : null}
               </div>
             </header>
 

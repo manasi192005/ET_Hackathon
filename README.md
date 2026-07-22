@@ -9,21 +9,23 @@ A comprehensive AI-powered dashboard tailored for **Engineering, Procurement, an
 
 **1. AI-Powered Document Analysis**
 - Upload project-related PDF documents (schedules, risk reports, commissioning data).
-- Automatic text extraction using `pdf-parse`.
-- Deep contextual analysis via **Google Gemini API**.
+- Automatic text extraction using `pdf-parse` (up to 3000 characters per document for thorough context).
+- Deep contextual analysis via **Google Gemini API** with high token limits (up to 4096 output tokens).
 - Generates comprehensive insights on schedule slip days, risks, and health status.
+- **Session Isolation:** Automatic state clearing on server startup and page refresh to ensure no stale data persists.
 *(Image Placeholder: Analysis Overview)*
 
 **2. Interactive Dashboard**
 - Visualizes **project health**, **completion forecast**, and **timeline** via intuitive widgets.
-- 24-hour snapshot of budget performance and schedule adherence.
+- Enhanced visual differentiation using **Emerald Green** and **Dark Slate** for progress indicators.
+- Smart placeholders ("—") for dynamic fields when no documents are loaded.
 - Dynamic 7-month timeline showing planned vs. actual progress.
 *(Image Placeholder: Real-time Dashboard)*
 
 **3. Real-Time AI Chat Assistant**
 - Ask the EPC AI assistant specific questions regarding uploaded documents.
-- Context-aware responses about schedule delays, critical paths, and shipment tracking.
-- Chat history persistence.
+- **Advanced Markdown Rendering:** Chat responses are formatted cleanly with bolding, lists, and headers instead of raw text.
+- **No-Filler Output:** The AI relies on strict system prompts to provide precise, actionable, and structured data, omitting unnecessary greetings.
 *(Image Placeholder: Chat Interface)*
 
 **4. Risk & Procurement Tracking**
@@ -35,7 +37,13 @@ A comprehensive AI-powered dashboard tailored for **Engineering, Procurement, an
 - Extracts test steps, expected outcomes, and current issues from PDFs.
 - Flags commissioning items as **Pass, At Risk, or Watch**.
 
-**6. Report Export**
+**6. Intuitive User Interface & Notifications**
+- **Streamlined UI:** Removed all filler text, verbose status messages, and unnecessary badges for a clean, professional command center experience.
+- **Notification Center:** Interactive bell dropdown with unread indicators and "Mark all read" functionality.
+- **User Profile:** Full PM profile dropdown for settings, projects, and sign-out capabilities.
+- **Clean Sidebar:** Streamlined navigation, maximizing the central dashboard space.
+
+**7. Report Export**
 - One-click **PDF generation** of the project summary, uploaded documents, and recent AI chat interactions using `pdfkit`.
 
 🏗️ **Technology Stack**

@@ -1,159 +1,28 @@
 {
-  "documents": [
-    {
-      "id": "1784661046852-66a1751aae38e",
-      "name": "03_project_schedule_wbs.pdf",
-      "size": 3433,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:10:46.852Z",
-      "preview": "Project Titan — Master Construction Schedule (WBS Export) Baseline as of: 15-Jul-2026 | Format: Simplified Primavera Export Task ID Task Name Duration (days)Start Finish Predecessor(s) Critical Path A100 Site Mobilization 10 01-Jun-26 10-Jun-26 - Yes A110 Civil Foundation — Electrical Building 25 11-Jun-26 05-Jul-26 A100 Yes A120 Civil Foundation — Generator Yard 18 11-Jun-26 28-Jun-26 A100 No A200 Transformer Procurement 60 01-Jun-26 30-Jul-26 - Yes A210 Transformer Delivery to Site 5 31-Jul-26",
-      "content": "Project Titan — Master Construction Schedule (WBS Export) Baseline as of: 15-Jul-2026 | Format: Simplified Primavera Export Task ID Task Name Duration (days)Start Finish Predecessor(s) Critical Path A100 Site Mobilization 10 01-Jun-26 10-Jun-26 - Yes A110 Civil Foundation — Electrical Building 25 11-Jun-26 05-Jul-26 A100 Yes A120 Civil Foundation — Generator Yard 18 11-Jun-26 28-Jun-26 A100 No A200 Transformer Procurement 60 01-Jun-26 30-Jul-26 - Yes A210 Transformer Delivery to Site 5 31-Jul-26 04-Aug-26 A200 Yes A220 Transformer Installation 8 05-Aug-26 12-Aug-26 A110,A210 Yes A300 UPS Procurement 70 01-Jun-26 09-Aug-26 - Yes A310 UPS Delivery to Site 6 10-Aug-26 15-Aug-26 A300 Yes A320 UPS Installation 10 16-Aug-26 25-Aug-26 A110,A310 Yes A400 DG Set Procurement 65 01-Jun-26 04-Aug-26 - No A410 DG Set Installation 9 05-Aug-26 13-Aug-26 A120,A400 No A500 CRAH Unit Procurement 45 01-Jun-26 15-Jul-26 - No A510 CRAH Installation 12 16-Jul-26 27-Jul-26 A110,A500 No A600 Electrical Cabling & Termination 20 26-Aug-26 14-Sep-26 A220,A320,A410Yes A700 Integrated Systems Testing (IST) 15 15-Sep-26 29-Sep-26 A600,A510 Yes A800 Commissioning & Handover 10 30-Sep-26 09-Oct-26 A700 Yes Planned Project Completion: 09-Oct-2026 | Total Critical Path Duration: 131 days Note: Column 'Critical Path' reflects the baseline calculation. Any slip to a critical-path task propagates directly to project completion date on a day-for-day basis unless mitigated. -- 1 of 1 --"
-    },
-    {
-      "id": "1784661046896-515bdfa669783",
-      "name": "04_shipment_tracking_log.pdf",
-      "size": 3107,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:10:46.897Z",
-      "preview": "Project Titan — Long-Lead Equipment Shipment Tracker Report Date: 20-Jul-2026 | Source: Procurement Team Weekly Update Equipment PO No. Vendor Linked TaskPlanned ShipActual/Revised Ship Planned Delivery Revised Delivery Status Transformer (2000 kVA)PO-4471 Voltamp Transformers A210 20-Jul-26 20-Jul-26 31-Jul-26 31-Jul-26 On Track UPS System (1000 kVA)PO-4488 Apex Power Systems A310 25-Jul-26 08-Aug-26 10-Aug-26 24-Aug-26 DELAYED — 14 days Diesel Generator (2500 kVA) PO-4502 GenPro Industries A40",
-      "content": "Project Titan — Long-Lead Equipment Shipment Tracker Report Date: 20-Jul-2026 | Source: Procurement Team Weekly Update Equipment PO No. Vendor Linked TaskPlanned ShipActual/Revised Ship Planned Delivery Revised Delivery Status Transformer (2000 kVA)PO-4471 Voltamp Transformers A210 20-Jul-26 20-Jul-26 31-Jul-26 31-Jul-26 On Track UPS System (1000 kVA)PO-4488 Apex Power Systems A310 25-Jul-26 08-Aug-26 10-Aug-26 24-Aug-26 DELAYED — 14 days Diesel Generator (2500 kVA) PO-4502 GenPro Industries A400 22-Jul-26 22-Jul-26 04-Aug-26 04-Aug-26 On Track CRAH Units (x6) PO-4390 CoolAir Systems A500 01-Jul-26 28-Jun-26 15-Jul-26 12-Jul-26 Ahead of Schedule Switchgear Panels (11kV) PO-4512 Schneider Electric India A220 26-Jul-26 02-Aug-26 05-Aug-26 12-Aug-26 DELAYED — 7 days Fire Suppression SystemPO-4530 Kidde-Fenwal A600 10-Aug-26 10-Aug-26 20-Aug-26 20-Aug-26 On Track Flagged Risk: UPS System delivery slip of 14 days directly impacts critical-path task A310 → A320 (UPS Installation), which is a predecessor to A600 (Cabling) and A700 (IST). Unmitigated, this pushes the 09-Oct-2026 completion date to approximately 23-Oct-2026. -- 1 of 1 --"
-    },
-    {
-      "id": "1784661046969-ea0fffbbea9dd",
-      "name": "05_commissioning_ist_checklist.pdf",
-      "size": 3677,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:10:46.969Z",
-      "preview": "Project Titan — Integrated Systems Testing (IST) Checklist Reference Standards: TIA-942, BICSI 002, Uptime Institute Tier III | Rev: 1 Section 1: Power Chain Testing Test ID Test Description Acceptance Criteria Status Linked Punch Item IST-P01 Utility-to-Generator transfer time ≤ 10 seconds to full load Pending - IST-P02 UPS battery autonomy load bank test ≥ rated autonomy at 100% load Pending PL-0231 (UPS install incomplete) IST-P03 N+1 UPS module failure simulation No load drop on single modul",
-      "content": "Project Titan — Integrated Systems Testing (IST) Checklist Reference Standards: TIA-942, BICSI 002, Uptime Institute Tier III | Rev: 1 Section 1: Power Chain Testing Test ID Test Description Acceptance Criteria Status Linked Punch Item IST-P01 Utility-to-Generator transfer time ≤ 10 seconds to full load Pending - IST-P02 UPS battery autonomy load bank test ≥ rated autonomy at 100% load Pending PL-0231 (UPS install incomplete) IST-P03 N+1 UPS module failure simulation No load drop on single module fail Pending - IST-P04 Transformer insulation resistance test ≥ 1000 MΩ Pass - IST-P05 Switchgear protection relay coordination Trip within coordination curve tolerancePending - Section 2: Cooling Chain Testing Test ID Test Description Acceptance Criteria Status Linked Punch Item IST-C01 CRAH N+1 failover test Room temp stays within setpoint ±2°C on unit fail Pending - IST-C02 Chilled water loop pressure test No leaks at 1.5x operating pressure Pass - IST-C03 Full load heat rejection test Sustained rejection at 100% IT load for 4 hrs Pending - Section 3: Open Punch List (as of 20-Jul-2026) Punch ID Area/System Description Raised Date Status PL-0198 Electrical Room Cable tray labeling incomplete 05-Jul-26 Open PL-0212 Generator Yard Weatherproof enclosure sealant touch-up 08-Jul-26 Open PL-0231 UPS Room UPS installation not yet started — awaiting delayed delivery (PO-4488) 18-Jul-26 Open — High Priority PL-0244 Cooling Plant CRAH unit #4 vibration above threshold 19-Jul-26 Open Note: Test IST-P02 cannot proceed until punch item PL-0231 (linked to delayed UPS delivery, PO-4488) is closed. This is a likely test-failure/blocked-test prediction for the Commissioning Copilot module. -- 1 of 1 --"
-    },
-    {
-      "id": "1784661047008-5b1ad3c09d5c9",
-      "name": "02_vendor_submittal_datasheet.pdf",
-      "size": 4315,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:10:47.008Z",
-      "preview": "Vendor Submittal Package Supplier: Apex Power Systems Pvt. Ltd. | Submittal No: APS-SUB-0231 | Rev: A 1. UPS System — As Offered (Model: APEX-UM1000) Parameter Offered Value Rated Capacity 1000 kVA / 900 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 2%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) 96.8% Battery Autonomy 8 minutes at full load Redundancy Configuration N (parallel expansion optional) Operating Temperature 0°C to 40°C Compliance Stan",
-      "content": "Vendor Submittal Package Supplier: Apex Power Systems Pvt. Ltd. | Submittal No: APS-SUB-0231 | Rev: A 1. UPS System — As Offered (Model: APEX-UM1000) Parameter Offered Value Rated Capacity 1000 kVA / 900 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 2%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) 96.8% Battery Autonomy 8 minutes at full load Redundancy Configuration N (parallel expansion optional) Operating Temperature 0°C to 40°C Compliance Standard IEC 62040-3 2. Transformer — As Offered (Model: TR-2000-DYN) Parameter Offered Value Rating 2000 kVA Primary Voltage 11 kV ± 5% Secondary Voltage 433V Cooling Type ONAN Vector Group Dyn11 Impedance 7.1% at 75°C Insulation Class Class B Standard IS 2026 / IEC 60076 3. Precision Cooling (CRAH Unit) — As Offered (Model: COOLAIR CX-120) Parameter Offered Value Cooling Capacity 110 kW sensible Airflow 16,500 CFM Chilled Water Supply Temp 12°C ± 1°C Return Water Temp 18°C Redundancy N+1 Fan Type EC Plug Fan, Variable Speed Filter Class MERV 8 minimum -- 1 of 2 -- Noise Level 82 dB(A) at 1m 4. Diesel Generator — As Offered (Model: GENPRO 2500) Parameter Offered Value Prime Rating 2500 kVA Voltage / Frequency 415V, 50 Hz Fuel Tank Capacity 6 hours at 100% load Emission Compliance CPCB IV+ Sound Attenuation Weatherproof enclosure, 79 dB(A) at 1m Paralleling Capable of N+1 paralleling with synchronizing panel Submitted for approval. Please confirm acceptance or raise technical query (RFI) within 5 working days. -- 2 of 2 --"
-    },
-    {
-      "id": "1784661047048-4e39f7fe59063",
-      "name": "01_client_spec_sheet.pdf",
-      "size": 4686,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:10:47.048Z",
-      "preview": "Project Titan — Hyderabad Data Centre Campus Client Technical Specification Sheet — Electrical & Mechanical Package Doc No: TIT-SPEC-ELEC-004 | Rev: C | Issued by: Owner's Engineer 1. UPS System — Required Specification Parameter Required Value Rated Capacity 1200 kVA / 1080 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 1%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) ≥ 97.5% Battery Autonomy 10 minutes at full load Redundancy Configuration N+1 (m",
-      "content": "Project Titan — Hyderabad Data Centre Campus Client Technical Specification Sheet — Electrical & Mechanical Package Doc No: TIT-SPEC-ELEC-004 | Rev: C | Issued by: Owner's Engineer 1. UPS System — Required Specification Parameter Required Value Rated Capacity 1200 kVA / 1080 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 1%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) ≥ 97.5% Battery Autonomy 10 minutes at full load Redundancy Configuration N+1 (minimum) Operating Temperature 0°C to 40°C Compliance Standard IEC 62040-3, Tier III per Uptime Institute 2. Transformer — Required Specification Parameter Required Value Rating 2000 kVA Primary Voltage 11 kV ± 5% Secondary Voltage 433V Cooling Type ONAN Vector Group Dyn11 Impedance 6.25% at 75°C Insulation Class Class F Standard IS 2026 / IEC 60076 3. Precision Cooling (CRAH Unit) — Required Specification Parameter Required Value Cooling Capacity 120 kW sensible Airflow 18,000 CFM Chilled Water Supply Temp 12°C ± 1°C Return Water Temp 18°C Redundancy N+1 -- 1 of 2 -- Fan Type EC Plug Fan, Variable Speed Filter Class MERV 8 minimum Noise Level ≤ 78 dB(A) at 1m 4. Diesel Generator — Required Specification Parameter Required Value Prime Rating 2500 kVA Voltage / Frequency 415V, 50 Hz Fuel Tank Capacity Minimum 8 hours at 100% load Emission Compliance CPCB IV+ Sound Attenuation Weatherproof, Super Silent Enclosure ≤ 75 dB(A) at 1m Paralleling Capable of N+1 paralleling with synchronizing panel Note: This specification sheet represents the Owner's Engineer baseline requirements. All vendor submittals and shop drawings must be checked against this document prior to procurement approval. Any deviation must be logged as a Non-Conformance Report (NCR) in the Quality Management System. -- 2 of 2 --"
-    },
-    {
-      "id": "1784660733393-3f66f2bf43422",
-      "name": "03_project_schedule_wbs.pdf",
-      "size": 3433,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:05:33.393Z",
-      "preview": "Project Titan — Master Construction Schedule (WBS Export) Baseline as of: 15-Jul-2026 | Format: Simplified Primavera Export Task ID Task Name Duration (days)Start Finish Predecessor(s) Critical Path A100 Site Mobilization 10 01-Jun-26 10-Jun-26 - Yes A110 Civil Foundation — Electrical Building 25 11-Jun-26 05-Jul-26 A100 Yes A120 Civil Foundation — Generator Yard 18 11-Jun-26 28-Jun-26 A100 No A200 Transformer Procurement 60 01-Jun-26 30-Jul-26 - Yes A210 Transformer Delivery to Site 5 31-Jul-26",
-      "content": "Project Titan — Master Construction Schedule (WBS Export) Baseline as of: 15-Jul-2026 | Format: Simplified Primavera Export Task ID Task Name Duration (days)Start Finish Predecessor(s) Critical Path A100 Site Mobilization 10 01-Jun-26 10-Jun-26 - Yes A110 Civil Foundation — Electrical Building 25 11-Jun-26 05-Jul-26 A100 Yes A120 Civil Foundation — Generator Yard 18 11-Jun-26 28-Jun-26 A100 No A200 Transformer Procurement 60 01-Jun-26 30-Jul-26 - Yes A210 Transformer Delivery to Site 5 31-Jul-26 04-Aug-26 A200 Yes A220 Transformer Installation 8 05-Aug-26 12-Aug-26 A110,A210 Yes A300 UPS Procurement 70 01-Jun-26 09-Aug-26 - Yes A310 UPS Delivery to Site 6 10-Aug-26 15-Aug-26 A300 Yes A320 UPS Installation 10 16-Aug-26 25-Aug-26 A110,A310 Yes A400 DG Set Procurement 65 01-Jun-26 04-Aug-26 - No A410 DG Set Installation 9 05-Aug-26 13-Aug-26 A120,A400 No A500 CRAH Unit Procurement 45 01-Jun-26 15-Jul-26 - No A510 CRAH Installation 12 16-Jul-26 27-Jul-26 A110,A500 No A600 Electrical Cabling & Termination 20 26-Aug-26 14-Sep-26 A220,A320,A410Yes A700 Integrated Systems Testing (IST) 15 15-Sep-26 29-Sep-26 A600,A510 Yes A800 Commissioning & Handover 10 30-Sep-26 09-Oct-26 A700 Yes Planned Project Completion: 09-Oct-2026 | Total Critical Path Duration: 131 days Note: Column 'Critical Path' reflects the baseline calculation. Any slip to a critical-path task propagates directly to project completion date on a day-for-day basis unless mitigated. -- 1 of 1 --"
-    },
-    {
-      "id": "1784660733429-743b608e2d674",
-      "name": "04_shipment_tracking_log.pdf",
-      "size": 3107,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:05:33.429Z",
-      "preview": "Project Titan — Long-Lead Equipment Shipment Tracker Report Date: 20-Jul-2026 | Source: Procurement Team Weekly Update Equipment PO No. Vendor Linked TaskPlanned ShipActual/Revised Ship Planned Delivery Revised Delivery Status Transformer (2000 kVA)PO-4471 Voltamp Transformers A210 20-Jul-26 20-Jul-26 31-Jul-26 31-Jul-26 On Track UPS System (1000 kVA)PO-4488 Apex Power Systems A310 25-Jul-26 08-Aug-26 10-Aug-26 24-Aug-26 DELAYED — 14 days Diesel Generator (2500 kVA) PO-4502 GenPro Industries A40",
-      "content": "Project Titan — Long-Lead Equipment Shipment Tracker Report Date: 20-Jul-2026 | Source: Procurement Team Weekly Update Equipment PO No. Vendor Linked TaskPlanned ShipActual/Revised Ship Planned Delivery Revised Delivery Status Transformer (2000 kVA)PO-4471 Voltamp Transformers A210 20-Jul-26 20-Jul-26 31-Jul-26 31-Jul-26 On Track UPS System (1000 kVA)PO-4488 Apex Power Systems A310 25-Jul-26 08-Aug-26 10-Aug-26 24-Aug-26 DELAYED — 14 days Diesel Generator (2500 kVA) PO-4502 GenPro Industries A400 22-Jul-26 22-Jul-26 04-Aug-26 04-Aug-26 On Track CRAH Units (x6) PO-4390 CoolAir Systems A500 01-Jul-26 28-Jun-26 15-Jul-26 12-Jul-26 Ahead of Schedule Switchgear Panels (11kV) PO-4512 Schneider Electric India A220 26-Jul-26 02-Aug-26 05-Aug-26 12-Aug-26 DELAYED — 7 days Fire Suppression SystemPO-4530 Kidde-Fenwal A600 10-Aug-26 10-Aug-26 20-Aug-26 20-Aug-26 On Track Flagged Risk: UPS System delivery slip of 14 days directly impacts critical-path task A310 → A320 (UPS Installation), which is a predecessor to A600 (Cabling) and A700 (IST). Unmitigated, this pushes the 09-Oct-2026 completion date to approximately 23-Oct-2026. -- 1 of 1 --"
-    },
-    {
-      "id": "1784660733468-8d17a98c943c1",
-      "name": "05_commissioning_ist_checklist.pdf",
-      "size": 3677,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:05:33.468Z",
-      "preview": "Project Titan — Integrated Systems Testing (IST) Checklist Reference Standards: TIA-942, BICSI 002, Uptime Institute Tier III | Rev: 1 Section 1: Power Chain Testing Test ID Test Description Acceptance Criteria Status Linked Punch Item IST-P01 Utility-to-Generator transfer time ≤ 10 seconds to full load Pending - IST-P02 UPS battery autonomy load bank test ≥ rated autonomy at 100% load Pending PL-0231 (UPS install incomplete) IST-P03 N+1 UPS module failure simulation No load drop on single modul",
-      "content": "Project Titan — Integrated Systems Testing (IST) Checklist Reference Standards: TIA-942, BICSI 002, Uptime Institute Tier III | Rev: 1 Section 1: Power Chain Testing Test ID Test Description Acceptance Criteria Status Linked Punch Item IST-P01 Utility-to-Generator transfer time ≤ 10 seconds to full load Pending - IST-P02 UPS battery autonomy load bank test ≥ rated autonomy at 100% load Pending PL-0231 (UPS install incomplete) IST-P03 N+1 UPS module failure simulation No load drop on single module fail Pending - IST-P04 Transformer insulation resistance test ≥ 1000 MΩ Pass - IST-P05 Switchgear protection relay coordination Trip within coordination curve tolerancePending - Section 2: Cooling Chain Testing Test ID Test Description Acceptance Criteria Status Linked Punch Item IST-C01 CRAH N+1 failover test Room temp stays within setpoint ±2°C on unit fail Pending - IST-C02 Chilled water loop pressure test No leaks at 1.5x operating pressure Pass - IST-C03 Full load heat rejection test Sustained rejection at 100% IT load for 4 hrs Pending - Section 3: Open Punch List (as of 20-Jul-2026) Punch ID Area/System Description Raised Date Status PL-0198 Electrical Room Cable tray labeling incomplete 05-Jul-26 Open PL-0212 Generator Yard Weatherproof enclosure sealant touch-up 08-Jul-26 Open PL-0231 UPS Room UPS installation not yet started — awaiting delayed delivery (PO-4488) 18-Jul-26 Open — High Priority PL-0244 Cooling Plant CRAH unit #4 vibration above threshold 19-Jul-26 Open Note: Test IST-P02 cannot proceed until punch item PL-0231 (linked to delayed UPS delivery, PO-4488) is closed. This is a likely test-failure/blocked-test prediction for the Commissioning Copilot module. -- 1 of 1 --"
-    },
-    {
-      "id": "1784660733497-9b3640c435eae",
-      "name": "02_vendor_submittal_datasheet.pdf",
-      "size": 4315,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:05:33.497Z",
-      "preview": "Vendor Submittal Package Supplier: Apex Power Systems Pvt. Ltd. | Submittal No: APS-SUB-0231 | Rev: A 1. UPS System — As Offered (Model: APEX-UM1000) Parameter Offered Value Rated Capacity 1000 kVA / 900 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 2%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) 96.8% Battery Autonomy 8 minutes at full load Redundancy Configuration N (parallel expansion optional) Operating Temperature 0°C to 40°C Compliance Stan",
-      "content": "Vendor Submittal Package Supplier: Apex Power Systems Pvt. Ltd. | Submittal No: APS-SUB-0231 | Rev: A 1. UPS System — As Offered (Model: APEX-UM1000) Parameter Offered Value Rated Capacity 1000 kVA / 900 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 2%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) 96.8% Battery Autonomy 8 minutes at full load Redundancy Configuration N (parallel expansion optional) Operating Temperature 0°C to 40°C Compliance Standard IEC 62040-3 2. Transformer — As Offered (Model: TR-2000-DYN) Parameter Offered Value Rating 2000 kVA Primary Voltage 11 kV ± 5% Secondary Voltage 433V Cooling Type ONAN Vector Group Dyn11 Impedance 7.1% at 75°C Insulation Class Class B Standard IS 2026 / IEC 60076 3. Precision Cooling (CRAH Unit) — As Offered (Model: COOLAIR CX-120) Parameter Offered Value Cooling Capacity 110 kW sensible Airflow 16,500 CFM Chilled Water Supply Temp 12°C ± 1°C Return Water Temp 18°C Redundancy N+1 Fan Type EC Plug Fan, Variable Speed Filter Class MERV 8 minimum -- 1 of 2 -- Noise Level 82 dB(A) at 1m 4. Diesel Generator — As Offered (Model: GENPRO 2500) Parameter Offered Value Prime Rating 2500 kVA Voltage / Frequency 415V, 50 Hz Fuel Tank Capacity 6 hours at 100% load Emission Compliance CPCB IV+ Sound Attenuation Weatherproof enclosure, 79 dB(A) at 1m Paralleling Capable of N+1 paralleling with synchronizing panel Submitted for approval. Please confirm acceptance or raise technical query (RFI) within 5 working days. -- 2 of 2 --"
-    },
-    {
-      "id": "1784660733527-485d5ebcf9798",
-      "name": "01_client_spec_sheet.pdf",
-      "size": 4686,
-      "mimeType": "application/pdf",
-      "uploadedAt": "2026-07-21T19:05:33.527Z",
-      "preview": "Project Titan — Hyderabad Data Centre Campus Client Technical Specification Sheet — Electrical & Mechanical Package Doc No: TIT-SPEC-ELEC-004 | Rev: C | Issued by: Owner's Engineer 1. UPS System — Required Specification Parameter Required Value Rated Capacity 1200 kVA / 1080 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 1%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) ≥ 97.5% Battery Autonomy 10 minutes at full load Redundancy Configuration N+1 (m",
-      "content": "Project Titan — Hyderabad Data Centre Campus Client Technical Specification Sheet — Electrical & Mechanical Package Doc No: TIT-SPEC-ELEC-004 | Rev: C | Issued by: Owner's Engineer 1. UPS System — Required Specification Parameter Required Value Rated Capacity 1200 kVA / 1080 kW Input Voltage 415V AC, 3-Phase, 50 Hz Output Voltage 415V AC ± 1%, 3-Phase Topology Double Conversion On-Line, Modular Efficiency (ECO mode) ≥ 97.5% Battery Autonomy 10 minutes at full load Redundancy Configuration N+1 (minimum) Operating Temperature 0°C to 40°C Compliance Standard IEC 62040-3, Tier III per Uptime Institute 2. Transformer — Required Specification Parameter Required Value Rating 2000 kVA Primary Voltage 11 kV ± 5% Secondary Voltage 433V Cooling Type ONAN Vector Group Dyn11 Impedance 6.25% at 75°C Insulation Class Class F Standard IS 2026 / IEC 60076 3. Precision Cooling (CRAH Unit) — Required Specification Parameter Required Value Cooling Capacity 120 kW sensible Airflow 18,000 CFM Chilled Water Supply Temp 12°C ± 1°C Return Water Temp 18°C Redundancy N+1 -- 1 of 2 -- Fan Type EC Plug Fan, Variable Speed Filter Class MERV 8 minimum Noise Level ≤ 78 dB(A) at 1m 4. Diesel Generator — Required Specification Parameter Required Value Prime Rating 2500 kVA Voltage / Frequency 415V, 50 Hz Fuel Tank Capacity Minimum 8 hours at 100% load Emission Compliance CPCB IV+ Sound Attenuation Weatherproof, Super Silent Enclosure ≤ 75 dB(A) at 1m Paralleling Capable of N+1 paralleling with synchronizing panel Note: This specification sheet represents the Owner's Engineer baseline requirements. All vendor submittals and shop drawings must be checked against this document prior to procurement approval. Any deviation must be logged as a Non-Conformance Report (NCR) in the Quality Management System. -- 2 of 2 --"
-    }
-  ],
+  "documents": [],
   "messages": [
     {
       "role": "assistant",
       "content": "I am your EPC AI assistant. Upload project PDFs then ask me anything about schedule delays, risks, commissioning status, or shipment tracking."
-    },
-    {
-      "role": "user",
-      "content": "Summarize the top project delivery risks for this month."
-    },
-    {
-      "role": "assistant",
-      "content": "Schedule Delay — UPS System Delivery Slip (14 Days)**\n        *   *Details*: UPS System (PO-4488 / Apex Power Systems) delivery delayed from"
-    },
-    {
-      "role": "user",
-      "content": "Which milestones are affected by delayed procurement packages?"
-    },
-    {
-      "role": "assistant",
-      "content": "Based on the provided project documents, the delayed procurement packages directly affect several downstream critical-path tasks and project completion milestones:\n\n### **1. Delayed Procurement Packages Identified**\n* **UPS System"
-    },
-    {
-      "role": "user",
-      "content": "Summarize the top project delivery risks for this month."
-    },
-    {
-      "role": "assistant",
-      "content": "19-Jul-26).\n        *   PL-0198: Electrical Room Cable tray labeling incomplete (05-Jul-26).\n        *"
-    },
-    {
-      "role": "user",
-      "content": "Which milestones are affected by delayed procurement packages?"
-    },
-    {
-      "role": "assistant",
-      "content": "Based on the project documentation, here are the detailed impacts of delayed procurement packages on downstream schedule milestones, along with concrete recommendations:\n\n### **1. Delayed Procurement Packages Identified**\n\n*   **UPS System"
     }
   ],
   "notes": [],
   "project": {
-    "projectName": "Project Titan — Hyderabad Data Centre Campus",
-    "executiveSummary": "Project Titan faces critical path schedule delay from equipment delivery slips. Technical submittals show major non-conformances against client specifications.",
+    "projectName": "Awaiting document analysis",
+    "executiveSummary": "Upload your project PDFs to start AI-powered analysis.",
     "dashboard": {
-      "health": "At Risk",
-      "completion": 38,
-      "activeRisks": 2,
-      "budgetUsed": 90,
-      "note": "Project Titan faces critical path schedule delay from equipment delivery slips. Technical submittals show major non-conformances against client specifications."
+      "health": "Waiting for upload",
+      "completion": 0,
+      "activeRisks": 0,
+      "budgetUsed": 0,
+      "note": "No documents analysed yet."
     },
     "schedule": {
-      "projectDuration": 45,
-      "slipDays": 14,
-      "slipWeeks": 2,
-      "slipHeadline": "UPS System delivery is delayed from 10-Aug-26 to 24-Aug-26, slipping project completion.",
-      "criticalPath": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G"
-      ],
+      "projectDuration": 0,
+      "slipDays": 0,
+      "slipWeeks": 0,
+      "slipHeadline": "Upload a schedule PDF to begin.",
+      "criticalPath": [],
       "tasks": [
         {
           "id": "A",
@@ -226,82 +95,32 @@
           "group": "Construction"
         }
       ],
-      "shipments": [
-        {
-          "id": "SHIP-01",
-          "equipment": "UPS System (1000 kVA)",
-          "taskId": "C",
-          "planned": "10-Aug-26",
-          "actual": "24-Aug-26",
-          "slipDays": 14
-        }
-      ]
+      "shipments": []
     },
-    "risks": [
-      {
-        "risk": "UPS System delivery slip",
-        "priority": "Critical",
-        "milestone": "A310 UPS Delivery to Site",
-        "owner": "Procurement Team",
-        "recommendation": "Expedite shipment to mitigate critical path impact to project completion date."
-      },
-      {
-        "risk": "UPS specification non-compliance",
-        "priority": "High",
-        "milestone": "A300 UPS Procurement",
-        "owner": "Owner's Engineer",
-        "recommendation": "Issue NCR for 1000 kVA offered versus 1200 kVA required spec."
-      }
-    ],
-    "commissioning": [
-      {
-        "test": "IST-P02 UPS battery autonomy load bank test",
-        "expected": "Ready",
-        "issue": "PL-0231 UPS installation not started awaiting delivery",
-        "result": "Likely fail"
-      },
-      {
-        "test": "IST-P04 Transformer insulation resistance test",
-        "expected": "Ready",
-        "issue": "None",
-        "result": "Pass"
-      }
-    ],
-    "tracking": [
-      {
-        "equipment": "UPS System (1000 kVA)",
-        "location": "UPS Room",
-        "stage": "A310 UPS Delivery to Site",
-        "status": "Delayed"
-      },
-      {
-        "equipment": "Transformer (2000 kVA)",
-        "location": "Electrical Building",
-        "stage": "A210 Transformer Delivery to Site",
-        "status": "On track"
-      }
-    ],
+    "risks": [],
+    "commissioning": [],
+    "tracking": [],
     "analytics": {
       "widgets": [
         {
           "label": "Schedule Adherence",
-          "value": 82,
-          "note": "14-day slip extracted from uploaded documents."
+          "value": 0,
+          "note": "Upload PDFs to generate."
         },
         {
           "label": "Procurement Progress",
-          "value": 75,
-          "note": "Long-lead shipments showing risk per tracking log."
+          "value": 0,
+          "note": "Upload PDFs to generate."
         },
         {
           "label": "Budget Performance",
-          "value": 90,
-          "note": "2 high/critical risks driving cost pressure."
+          "value": 0,
+          "note": "Upload PDFs to generate."
         },
         {
           "label": "Completion Forecast",
-          "value": 85,
-          "note": "2 week forecast shift identified in uploaded schedule."
+          "value": 0,
+          "note": "Upload PDFs to generate."
         }
       ],
       "timelineRows": [
@@ -322,30 +141,29 @@
         },
         {
           "month": "Apr",
-          "plan": 10,
-          "actual": 5
+          "plan": 0,
+          "actual": 0
         },
         {
           "month": "May",
-          "plan": 22,
-          "actual": 16
+          "plan": 0,
+          "actual": 0
         },
         {
           "month": "Jun",
-          "plan": 32,
-          "actual": 26
+          "plan": 0,
+          "actual": 0
         },
         {
           "month": "Jul",
-          "plan": 38,
-          "actual": 24
+          "plan": 0,
+          "actual": 0
         }
       ]
     },
     "insights": [
-      "UPS delivery slip of 14 days pushes project completion from 09-Oct-2026 to 23-Oct-2026.",
-      "Vendor submittal offers 1000 kVA UPS and 8 min autonomy against 1200 kVA and 10 min spec."
+      "Upload project PDFs to replace this placeholder with real AI insights."
     ],
-    "updatedAt": "2026-07-21T19:52:17.461Z"
+    "updatedAt": "2026-07-22T14:44:14.751Z"
   }
 }

@@ -78,6 +78,14 @@ function writeState(s) {
   fs.writeFileSync(stateFile, JSON.stringify(s, null, 2), "utf8")
 }
 
+// ─── CLEAR documents and project on every server start ───────────────────────
+// This ensures no stale PDFs or old analysis dates bleed in across restarts.
+;(() => {
+  const fresh = { documents: [], messages: [initialMessage], notes: [], project: emptyProject() }
+  writeState(fresh)
+  console.log("[Startup] Session cleared — fresh state written.")
+})()
+
 // ─── build project model from Gemini JSON ─────────────────────────────────────
 function buildFromGemini(documents, ai) {
   const sched   = ai.schedule    || {}
@@ -261,20 +269,50 @@ async function callGeminiChat(prompt, state) {
   const apiKey = process.env.GEMINI_API_KEY || process.env.VITE_GEMINI_API_KEY
   if (!apiKey) return null
 
+  // Provide up to 3000 chars per document for thorough context
   const docCtx = state.documents.length
-    ? state.documents.map(d => `--- ${d.name} ---\n${(d.content || d.preview || "").slice(0, 1500)}`).join("\n\n")
-    : "No documents uploaded yet."
+    ? state.documents.map(d => `--- DOCUMENT: ${d.name} ---\n${(d.content || d.preview || "").slice(0, 3000)}`).join("\n\n")
+    : "No documents uploaded yet. Ask the user to upload PDFs first."
 
   const proj = state.project || {}
-  const sysPrompt = `You are ProjectMind, an expert AI assistant for EPC data-centre delivery.
-Project: ${proj.projectName || "Unknown"}. Health: ${proj.dashboard?.health || "Unknown"}. Completion: ${proj.dashboard?.completion || 0}%.
-Active risks: ${proj.risks?.length || 0}. Slip days: ${proj.schedule?.slipDays || 0}.
+  const risks   = (proj.risks   || []).map(r => `• [${r.priority}] ${r.risk} — ${r.recommendation}`).join("\n") || "None extracted yet."
+  const comm    = (proj.commissioning || []).map(c => `• ${c.test}: ${c.result} — ${c.issue}`).join("\n") || "None extracted yet."
+  const track   = (proj.tracking || []).map(t => `• ${t.equipment} @ ${t.location}: ${t.status}`).join("\n") || "None extracted yet."
+  const insights = (proj.insights || []).join("\n") || "No insights yet."
 
-DOCUMENT CONTENT:
+  const sysPrompt = `You are ProjectMind, an EPC project controls AI assistant.
+
+## PROJECT CONTEXT
+- **Project:** ${proj.projectName || "No project loaded"}
+- **Health:** ${proj.dashboard?.health || "Unknown"} | **Completion:** ${proj.dashboard?.completion || 0}% | **Budget Used:** ${proj.dashboard?.budgetUsed || 0}%
+- **Slip:** ${proj.schedule?.slipDays || 0} days (${proj.schedule?.slipWeeks || 0} weeks) | **Active Risks:** ${proj.risks?.length || 0}
+- **Summary:** ${proj.executiveSummary || "No analysis run yet."}
+
+## RISKS
+${risks}
+
+## COMMISSIONING
+${comm}
+
+## TRACKING
+${track}
+
+## INSIGHTS
+${insights}
+
+## DOCUMENT CONTENT
 ${docCtx}
 
-Answer with specific numbers, dates, and recommendations from the documents. Use bullet points. Be detailed and concrete.
-Question: ${prompt}`
+## RESPONSE RULES
+1. **No filler.** Skip greetings, self-introductions, and meta-commentary.
+2. **Match scope to the question.** A simple question gets a short answer. A complex one gets structured detail.
+3. **Use markdown formatting:** use ## for section headers, **bold** for key terms, - for bullet points.
+4. **Cite specifics** from the documents: exact numbers, dates, equipment names, milestones.
+5. **If no documents are uploaded**, answer in 2-3 sentences max: state what is missing and what to upload.
+6. **End with** a single "**Next Action:**" line only when it adds clear value.
+
+## USER QUESTION
+${prompt}`
 
   const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"
   try {
@@ -283,7 +321,7 @@ Question: ${prompt}`
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: [{ role: "user", parts: [{ text: sysPrompt }] }],
-        generationConfig: { temperature: 0.3, maxOutputTokens: 1024 },
+        generationConfig: { temperature: 0.4, maxOutputTokens: 4096 },
       }),
     })
     if (!res.ok) {
